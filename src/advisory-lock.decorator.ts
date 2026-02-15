@@ -1,4 +1,3 @@
-import { SetMetadata } from '@nestjs/common';
 import { ADVISORY_LOCK_KEY } from './advisory-lock.constants';
 import { AdvisoryLockService } from './advisory-lock.service';
 
@@ -25,7 +24,7 @@ export function WithAdvisoryLock(key: string | number): MethodDecorator {
     propertyKey: string | symbol,
     descriptor: TypedPropertyDescriptor<any>,
   ) => {
-    SetMetadata(ADVISORY_LOCK_KEY, lockId)(target, propertyKey, descriptor);
+    Reflect.defineMetadata(ADVISORY_LOCK_KEY, lockId, target, propertyKey);
 
     const originalMethod = descriptor.value;
 

@@ -1,7 +1,38 @@
 import { AdvisoryLockService } from '../src/advisory-lock.service';
 import { WithAdvisoryLock } from '../src/advisory-lock.decorator';
+import { ADVISORY_LOCK_KEY } from '../src/advisory-lock.constants';
 
 describe('WithAdvisoryLock decorator', () => {
+  describe('metadata storage', () => {
+    it('should store lock ID on prototype so module discovery can find it', () => {
+      class TestService {
+        @WithAdvisoryLock(839271)
+        async myJob() {}
+      }
+
+      const lockId = Reflect.getMetadata(
+        ADVISORY_LOCK_KEY,
+        TestService.prototype,
+        'myJob',
+      );
+      expect(lockId).toBe(839271);
+    });
+
+    it('should hash string keys and store the hash as metadata', () => {
+      class TestService {
+        @WithAdvisoryLock('process-orders')
+        async myJob() {}
+      }
+
+      const lockId = Reflect.getMetadata(
+        ADVISORY_LOCK_KEY,
+        TestService.prototype,
+        'myJob',
+      );
+      expect(lockId).toBe(AdvisoryLockService.hashKey('process-orders'));
+    });
+  });
+
   it('should wrap method to call withLock on the injected service', async () => {
     const mockWithLock = jest.fn().mockImplementation((_id, fn) => fn());
 

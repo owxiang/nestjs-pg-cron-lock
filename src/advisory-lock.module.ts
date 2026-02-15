@@ -2,7 +2,6 @@ import {
   Module,
   Global,
   OnModuleInit,
-  Inject,
   Logger,
 } from '@nestjs/common';
 import { ModulesContainer, DiscoveryService } from '@nestjs/core';

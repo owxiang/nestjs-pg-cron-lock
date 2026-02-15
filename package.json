@@ -1,6 +1,6 @@
 {
   "name": "nestjs-pg-cron-lock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Distributed cron job locking for NestJS using PostgreSQL advisory locks. Ensures only one instance runs a cron job across multiple servers. No Redis required.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
