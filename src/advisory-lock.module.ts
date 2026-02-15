@@ -31,7 +31,11 @@ export class AdvisoryLockModule implements OnModuleInit {
         if (!proto) continue;
 
         const methodNames = Object.getOwnPropertyNames(proto).filter(
-          (name) => name !== 'constructor' && typeof proto[name] === 'function',
+          (name) => {
+            if (name === 'constructor') return false;
+            const d = Object.getOwnPropertyDescriptor(proto, name);
+            return d && typeof d.value === 'function';
+          },
         );
 
         for (const methodName of methodNames) {
