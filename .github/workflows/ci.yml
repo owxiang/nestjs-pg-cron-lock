@@ -13,6 +13,12 @@ jobs:
     strategy:
       matrix:
         node-version: [18, 20, 22]
+        nest-version: [10, 11, 12]
+        exclude:
+          - node-version: 18
+            nest-version: 12
+
+    name: Node ${{ matrix.node-version }} / NestJS ${{ matrix.nest-version }}
 
     steps:
       - uses: actions/checkout@v4
@@ -23,5 +29,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: npm ci
+      - run: npm install --no-save @nestjs/common@${{ matrix.nest-version }} @nestjs/core@${{ matrix.nest-version }} @nestjs/testing@${{ matrix.nest-version }}
       - run: npm run build
       - run: npm test
