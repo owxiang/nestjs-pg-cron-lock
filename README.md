@@ -151,7 +151,7 @@ Global module. Import once in your root module. Requires TypeORM `DataSource` to
 
 ## Requirements
 
-- NestJS 10+ or 11+
+- NestJS 10, 11 or 12 (NestJS 12 ships as ESM and needs Node 20.19+ or 22.12+ for require(esm))
 - TypeORM 0.3+
 - PostgreSQL
 
