@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import 'reflect-metadata';
 import { AdvisoryLockModule } from '../src/advisory-lock.module';
 import { AdvisoryLockService } from '../src/advisory-lock.service';

@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { AdvisoryLockService } from '../src/advisory-lock.service';
 import { WithAdvisoryLock } from '../src/advisory-lock.decorator';
 import { ADVISORY_LOCK_KEY } from '../src/advisory-lock.constants';

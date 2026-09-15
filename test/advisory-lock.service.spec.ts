@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { AdvisoryLockService } from '../src/advisory-lock.service';
 import { DataSource, QueryRunner } from 'typeorm';
 
